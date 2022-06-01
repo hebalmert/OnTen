@@ -9,15 +9,15 @@ using OnTen.Web.Data;
 namespace OnTen.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220601031849_InitialDb")]
-    partial class InitialDb
+    [Migration("20220601151554_InitialDB")]
+    partial class InitialDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.16")
+                .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("OnTen.Common.Entities.Country", b =>
