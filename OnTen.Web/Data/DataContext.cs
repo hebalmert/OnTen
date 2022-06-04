@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnTen.Common.Entities;
+using OnTen.Web.Data.Entities;
 
 namespace OnTen.Web.Data
 {
@@ -15,9 +16,20 @@ namespace OnTen.Web.Data
 
         public DbSet<Department> Departments { get; set; }
 
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<ProductImage> ProductImages { get; set; }
+
+        public DbSet<Product> Products { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Category>()
+                .HasIndex(t => t.Name)
+                .IsUnique();
+
 
             modelBuilder.Entity<Country>()
                 .HasIndex(t => t.Name)
@@ -28,6 +40,10 @@ namespace OnTen.Web.Data
                 .IsUnique();
 
             modelBuilder.Entity<Department>()
+                .HasIndex(t => t.Name)
+                .IsUnique();
+
+            modelBuilder.Entity<Product>()
                 .HasIndex(t => t.Name)
                 .IsUnique();
 

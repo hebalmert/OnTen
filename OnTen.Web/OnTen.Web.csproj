@@ -26,4 +26,8 @@
     <ProjectReference Include="..\OnTen.Common\OnTen.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Categories\" />
+  </ItemGroup>
+
 </Project>

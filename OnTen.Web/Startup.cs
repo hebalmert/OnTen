@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OnTen.Web.Data;
+using OnTen.Web.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,9 @@ namespace OnTen.Web
             //Implementacion del Seeder
             services.AddTransient<SeedDb>();
 
+            //Se Inyectan las Interfaces que se van creando para tenerlas Disponibles
+            services.AddScoped<IImageHelper, ImageHelper>();
+            services.AddScoped<IConverterHelper, ConverterHelper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
