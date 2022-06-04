@@ -32,6 +32,8 @@ namespace OnTen.Web
                 cfg.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            //Implementacion del Seeder
+            services.AddTransient<SeedDb>();
 
         }
 

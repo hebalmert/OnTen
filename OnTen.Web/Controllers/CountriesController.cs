@@ -60,7 +60,7 @@ namespace OnTen.Web.Controllers
                 return NotFound();
             }
 
-            Department model = new Department
+            Department model = new()
             {
                 CountryId = country.CountryId
             };

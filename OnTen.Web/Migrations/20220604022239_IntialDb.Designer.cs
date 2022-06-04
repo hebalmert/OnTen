@@ -9,8 +9,8 @@ using OnTen.Web.Data;
 namespace OnTen.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220602032659_InitialDB")]
-    partial class InitialDB
+    [Migration("20220604022239_IntialDb")]
+    partial class IntialDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
