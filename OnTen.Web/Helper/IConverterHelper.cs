@@ -1,5 +1,7 @@
 ﻿using OnTen.Common.Entities;
+using OnTen.Web.Data.Entities;
 using OnTen.Web.Models;
+using System.Threading.Tasks;
 
 namespace OnTen.Web.Helper
 {
@@ -9,8 +11,8 @@ namespace OnTen.Web.Helper
 
         CategoryViewModel ToCategoryViewModel(Category category);
 
-        //Task<Product> ToProductAsync(ProductViewModel model, bool isNew);
+        Task<Product> ToProductAsync(ProductViewModel model, bool isNew);
 
-        //ProductViewModel ToProductViewModel(Product product);
+        ProductViewModel ToProductViewModel(Product product);
     }
 }

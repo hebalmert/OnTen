@@ -39,6 +39,9 @@ namespace OnTen.Web
             //Se Inyectan las Interfaces que se van creando para tenerlas Disponibles
             services.AddScoped<IImageHelper, ImageHelper>();
             services.AddScoped<IConverterHelper, ConverterHelper>();
+            services.AddScoped<ICombosHelper, CombosHelper>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

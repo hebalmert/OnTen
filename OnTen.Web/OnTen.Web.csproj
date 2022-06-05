@@ -28,6 +28,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Categories\" />
+    <Folder Include="wwwroot\Products\" />
   </ItemGroup>
 
 </Project>

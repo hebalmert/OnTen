@@ -1,6 +1,12 @@
-﻿namespace OnTen.Web.Helper
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+
+namespace OnTen.Web.Helper
 {
-    internal interface ICombosHelper
+    public interface ICombosHelper
     {
+        IEnumerable<SelectListItem> GetComboCategories();
+
+
     }
 }
