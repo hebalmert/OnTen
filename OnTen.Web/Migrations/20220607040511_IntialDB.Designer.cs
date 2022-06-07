@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnTen.Web.Data;
 
 namespace OnTen.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220607040511_IntialDB")]
+    partial class IntialDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -263,72 +265,6 @@ namespace OnTen.Web.Migrations
                     b.ToTable("ProductImages");
                 });
 
-            modelBuilder.Entity("OnTen.Web.Data.Entities.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateConfirmed")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateSent")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("OrderStatus")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PaymentMethod")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Remarks")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("OnTen.Web.Data.Entities.OrderDetail", b =>
-                {
-                    b.Property<int>("OrderDetailId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<float>("Quantity")
-                        .HasColumnType("real");
-
-                    b.Property<string>("Remarks")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("OrderDetailId");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderDetails");
-                });
-
             modelBuilder.Entity("OnTen.Web.Data.Entities.Product", b =>
                 {
                     b.Property<int>("ProductId")
@@ -543,30 +479,6 @@ namespace OnTen.Web.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("OnTen.Web.Data.Entities.Order", b =>
-                {
-                    b.HasOne("OnTen.Web.Data.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("OnTen.Web.Data.Entities.OrderDetail", b =>
-                {
-                    b.HasOne("OnTen.Web.Data.Entities.Order", null)
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("OrderId");
-
-                    b.HasOne("OnTen.Web.Data.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("OnTen.Web.Data.Entities.Product", b =>
                 {
                     b.HasOne("OnTen.Common.Entities.Category", "Category")
@@ -597,11 +509,6 @@ namespace OnTen.Web.Migrations
             modelBuilder.Entity("OnTen.Common.Entities.Department", b =>
                 {
                     b.Navigation("Cities");
-                });
-
-            modelBuilder.Entity("OnTen.Web.Data.Entities.Order", b =>
-                {
-                    b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("OnTen.Web.Data.Entities.Product", b =>

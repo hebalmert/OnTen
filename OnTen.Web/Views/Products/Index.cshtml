@@ -36,62 +36,47 @@
                         <th>
                             @Html.DisplayNameFor(model => model.IsStarred)
                         </th>
-@*                        <th>
-                            @Html.DisplayNameFor(model => model.Qualification)
-                        </th>*@
-
                         <th>
                             Category
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.ProductImagesNumber)
                         </th>
-@*                        <th>
-                            @Html.DisplayNameFor(model => model.ProductQualifications)
-                        </th>*@
-                        <th width="120px"></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            <img src="@item.ImageFullPath" style="width:100px;height:100px;max-width: 100%; height: auto;" />
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Price)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsActive)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsStarred)
-                        </td>
-@*                        <td>
-                            @Html.DisplayFor(modelItem => item.Qualification)
-                        </td>*@
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                <img src="@item.ImageFullPath" style="width:100px;height:100px;max-width: 100%; height: auto;" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IsActive)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IsStarred)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Category.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductImagesNumber)
+                            </td>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Category.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ProductImagesNumber)
-                        </td>
-@*                        <td>
-                            @Html.DisplayFor(modelItem => item.ProductQualifications)
-                        </td>*@
-
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.ProductId" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil-alt"></i></a>
-                            <a asp-action="Details" asp-route-id="@item.ProductId" class="btn btn-outline-info btn-sm"><i class="fa fa-clipboard-list"></i></a>
-                            <button data-id="@item.ProductId" class="btn btn-outline-danger btn-sm deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="fa fa-trash-alt"></i></button>
-                        </td>
-                    </tr>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.ProductId" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil-alt"></i></a>
+                                <a asp-action="Details" asp-route-id="@item.ProductId" class="btn btn-outline-info btn-sm"><i class="fa fa-clipboard-list"></i></a>
+                                <button data-id="@item.ProductId" class="btn btn-outline-danger btn-sm deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="fa fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -103,15 +88,15 @@
 <partial name="_DeleteDialog" />
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
     <script type="text/javascript" src="~/DataTable/js/jquery.dataTables.min.js"></script>
     <script src="~/js/deleteDialog.js"></script>
 
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('#MyTable').DataTable({
-                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
-            });
+        $(document).ready(function() {
+            $('#MyTable').DataTable({});
 
             // Delete item
             sc_deleteDialog.openModal('deleteItem', true, 'btnYesDelete', '/Products/Delete/', false);
