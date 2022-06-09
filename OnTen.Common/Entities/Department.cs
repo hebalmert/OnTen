@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace OnTen.Common.Entities
 {
@@ -23,7 +24,7 @@ namespace OnTen.Common.Entities
 
         public int CountryId { get; set; }
 
-
+        [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
         public Country Country { get; set; }
     }
 }

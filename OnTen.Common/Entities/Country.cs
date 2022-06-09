@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace OnTen.Common.Entities
 {
@@ -18,7 +19,7 @@ namespace OnTen.Common.Entities
         [DisplayName("Departments Number")]
         public int DepartmentsNumber => Departments == null ? 0 : Departments.Count;
 
-
+       
         public ICollection<Department> Departments { get; set; }
     }
 }

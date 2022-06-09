@@ -6,12 +6,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using OnTen.Web.Data;
 using OnTen.Web.Data.Entities;
 using OnTen.Web.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace OnTen.Web
@@ -46,7 +48,18 @@ namespace OnTen.Web
                 cfg.Password.RequireUppercase = false;
             }).AddEntityFrameworkStores<DataContext>();
 
-
+            //Se habilita el uso de Token de seguridad
+            services.AddAuthentication()
+                .AddCookie()
+                .AddJwtBearer(cfg =>
+                {
+                    cfg.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidIssuer = Configuration["Tokens:Issuer"],
+                        ValidAudience = Configuration["Tokens:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"]))
+                    };
+                });
 
             //Implementacion del Seeder
             services.AddTransient<SeedDb>();

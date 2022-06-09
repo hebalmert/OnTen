@@ -20,5 +20,12 @@ namespace OnTen.Web.Helper
         Task<SignInResult> LoginAsync(LoginViewModel model);
 
         Task LogoutAsync();
+
+
+        //Se pasa el Usuario y el Pass, para ver si es Valido el Usuario, nos da un Result
+        Task<SignInResult> ValidatePasswordAsync(User user, string password);
+
+
+
     }
 }
