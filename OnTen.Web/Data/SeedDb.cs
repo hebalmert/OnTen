@@ -64,8 +64,8 @@ namespace OnTen.Web.Data
                 await _userHelper.AddUserToRoleAsync(user, userType.ToString());
 
                 //Para Confirmar automaticamente el Usuario y activar la cuenta
-                //string token = await _userHelper.GenerateEmailConfirmationTokenAsync(user);
-                //await _userHelper.ConfirmEmailAsync(user, token);
+                string token = await _userHelper.GenerateEmailConfirmationTokenAsync(user);
+                await _userHelper.ConfirmEmailAsync(user, token);
 
             }
 

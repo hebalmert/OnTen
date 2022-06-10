@@ -37,16 +37,28 @@ namespace OnTen.Web
                 cfg.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            //Para EL manejo de Paginas No Autorizadas o no Encontradas
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Account/NotAuthorized";
+                options.AccessDeniedPath = "/Account/NotAuthorized";
+            });
+
             //Para sistema de Logueo
             services.AddIdentity<User, IdentityRole>(cfg =>
             {
+                //Agregamos Validar Correo para dar de alta al Usuario
+                cfg.Tokens.AuthenticatorTokenProvider = TokenOptions.DefaultAuthenticatorProvider;
+                cfg.SignIn.RequireConfirmedEmail = true;
+
                 cfg.User.RequireUniqueEmail = true;
                 cfg.Password.RequireDigit = false;
                 cfg.Password.RequiredUniqueChars = 0;
                 cfg.Password.RequireLowercase = false;
                 cfg.Password.RequireNonAlphanumeric = false;
                 cfg.Password.RequireUppercase = false;
-            }).AddEntityFrameworkStores<DataContext>();
+            }).AddDefaultTokenProviders()  //Complemento Validar Correo
+                .AddEntityFrameworkStores<DataContext>();
 
             //Se habilita el uso de Token de seguridad
             services.AddAuthentication()
@@ -70,6 +82,9 @@ namespace OnTen.Web
             services.AddScoped<ICombosHelper, CombosHelper>();
             services.AddScoped<IUserHelper, UserHelper>();
 
+            //Para poder usar el sistema de envio de correos
+            services.AddScoped<IMailHelper, MailHelper>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -85,6 +100,19 @@ namespace OnTen.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            //Codigo para Obligar al Navegador siempre estar en Estados Unidos 
+            //y usar , como miles y . como decimal
+            //app.UseRequestLocalization(new RequestLocalizationOptions
+            //{
+            //    DefaultRequestCulture = new RequestCulture("en-US"),
+            //    SupportedCultures = new[] { new CultureInfo("en-US") },
+            //    SupportedUICultures = new[] { new CultureInfo("en-US") }
+            //});
+
+            //Para El Manejo de Paginas No Autorizadas o No Encontradas
+            app.UseStatusCodePagesWithReExecute("/error/{0}");
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

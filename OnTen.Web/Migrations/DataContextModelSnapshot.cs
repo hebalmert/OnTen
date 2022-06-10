@@ -192,7 +192,7 @@ namespace OnTen.Web.Migrations
 
                     b.HasIndex("DepartmentId");
 
-                    b.HasIndex("Name")
+                    b.HasIndex("Name", "DepartmentId")
                         .IsUnique();
 
                     b.ToTable("Cities");
@@ -237,7 +237,7 @@ namespace OnTen.Web.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.HasIndex("Name")
+                    b.HasIndex("Name", "CountryId")
                         .IsUnique();
 
                     b.ToTable("Departments");

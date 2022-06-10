@@ -13,6 +13,13 @@ namespace OnTen.Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        //Para Manejo de Paginas no Autorizadas o No Encontradas
+        [Route("error/404")]
+        public IActionResult Error404()
+        {
+            return View();
+        }
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;

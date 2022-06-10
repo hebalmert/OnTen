@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using OnTen.Common.Enum;
 using OnTen.Web.Data.Entities;
 using OnTen.Web.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace OnTen.Web.Helper
@@ -26,6 +28,28 @@ namespace OnTen.Web.Helper
         Task<SignInResult> ValidatePasswordAsync(User user, string password);
 
 
+        //Para Autoregistro de Usuarios
+        Task<User> AddUserAsync(AddUserViewModel model, string imageId, UserType userType);
 
+
+        //Para Administrar El Cambio de Clave de los usuarios
+        Task<IdentityResult> ChangePasswordAsync(User user, string oldPassword, string newPassword);
+
+        Task<IdentityResult> UpdateUserAsync(User user);
+
+        Task<User> GetUserAsync(Guid userId);
+
+
+        //Metodos para Validar el Correo del Usuario para activar la cuenta
+
+        Task<string> GenerateEmailConfirmationTokenAsync(User user);
+
+        Task<IdentityResult> ConfirmEmailAsync(User user, string token);
+
+
+        //Recuperacion de la Clave de Usuario
+        Task<string> GeneratePasswordResetTokenAsync(User user);
+
+        Task<IdentityResult> ResetPasswordAsync(User user, string token, string password);
     }
 }

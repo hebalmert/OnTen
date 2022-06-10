@@ -10,8 +10,8 @@ using OnTen.Web.Data;
 namespace OnTen.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220607041051_AddOrder")]
-    partial class AddOrder
+    [Migration("20220610160432_InitialDb")]
+    partial class InitialDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -194,7 +194,7 @@ namespace OnTen.Web.Migrations
 
                     b.HasIndex("DepartmentId");
 
-                    b.HasIndex("Name")
+                    b.HasIndex("Name", "DepartmentId")
                         .IsUnique();
 
                     b.ToTable("Cities");
@@ -239,7 +239,7 @@ namespace OnTen.Web.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.HasIndex("Name")
+                    b.HasIndex("Name", "CountryId")
                         .IsUnique();
 
                     b.ToTable("Departments");

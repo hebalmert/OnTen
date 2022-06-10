@@ -1,6 +1,7 @@
 ﻿using OnTen.Common.Entities;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace OnTen.Web.Data.Entities
@@ -30,7 +31,6 @@ namespace OnTen.Web.Data.Entities
 
         //[JsonIgnore]
         public Category Category { get; set; }
-
 
         public ICollection<ProductImage> ProductImages { get; set; }
 
