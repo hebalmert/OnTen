@@ -31,10 +31,10 @@ namespace OnTen.Web.Data.Entities
         //TODO: Pending to put the correct paths
         [Display(Name = "Image")]
         public string ImageFullPath => ImageId == string.Empty
-            ? $"https://localhost:44379/Images/noimage.png"
-            : $"https://localhost:44379/Users/{ImageId}";
-        //? $"http://onven.linkonext.com/Images/noimage.png"
-        //: $"http://onven.linkonext.com/Users/{ImageId}";
+            //? $"https://localhost:44379/Images/noimage.png"
+            //: $"https://localhost:44379/Users/{ImageId}";
+        ? $"http://onten.linkonext.com/Images/noimage.png"
+        : $"http://onten.linkonext.com/Users/{ImageId}";
 
         [Display(Name = "User Type")]
         public UserType UserType { get; set; }

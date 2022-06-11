@@ -29,10 +29,4 @@
     <ProjectReference Include="..\OnTen.Common\OnTen.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\Categories\" />
-    <Folder Include="wwwroot\users\" />
-    <Folder Include="wwwroot\Products\" />
-  </ItemGroup>
-
 </Project>

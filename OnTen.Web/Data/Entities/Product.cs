@@ -41,8 +41,8 @@ namespace OnTen.Web.Data.Entities
         //TODO: Pending to put the correct paths
         [Display(Name = "Image")]
         public string ImageFullPath => ProductImages == null || ProductImages.Count == 0
-            ? $"https://localhost:44379/Images/noimage.png"
-            //? $"http://onven.linkonext.com/Images/noimage.png"
+            //? $"https://localhost:44379/Images/noimage.png"
+            ? $"http://onten.linkonext.com/Images/noimage.png"
             : ProductImages.FirstOrDefault().ImageFullPath;
 
     }

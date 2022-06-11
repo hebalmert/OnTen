@@ -18,12 +18,11 @@ namespace OnTen.Common.Entities
 
         //TODO: Pending to put the correct paths
         [Display(Name = "Image")]
-        public string ImageFullPath => ImageId == string.Empty 
-            ? $"https://localhost:44379/Images/noimage.png"
-            : $"https://localhost:44379/Categories/{ImageId}";
-
-        //? $"http://onven.linkonext.com/Images/noimage.png"
-        //: $"http://onven.linkonext.com/Categories/{ImageId}";
+        public string ImageFullPath => ImageId == string.Empty
+        //? $"https://localhost:44379/Images/noimage.png"
+        //: $"https://localhost:44379/Categories/{ImageId}";
+        ? $"http://onten.linkonext.com/Images/noimage.png"
+        : $"http://onten.linkonext.com/Categories/{ImageId}";
 
 
         //public ICollection<Product> Products { get; set; }
