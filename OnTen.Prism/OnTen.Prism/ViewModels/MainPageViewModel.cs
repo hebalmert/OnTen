@@ -13,7 +13,7 @@ namespace OnTen.Prism.ViewModels
         public MainPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
-            Title = "Sistema OnTen Primera APP";
+            Title = "Main Page";
         }
     }
 }
