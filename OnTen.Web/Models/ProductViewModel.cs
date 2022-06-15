@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using OnTen.Web.Data.Entities;
+using OnTen.Common.Entities;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 

@@ -1,4 +1,4 @@
-﻿using OnTen.Web.Data.Entities;
+﻿using OnTen.Common.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace OnTen.Web.Data.Entities

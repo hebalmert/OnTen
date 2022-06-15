@@ -1,17 +1,18 @@
-﻿using OnTen.Common.Entities;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text;
 
-namespace OnTen.Web.Data.Entities
+namespace OnTen.Common.Entities
 {
     public class Product
     {
         public int ProductId { get; set; }
 
-        [MaxLength(50, ErrorMessage = "The Maxlength is {0}")]
-        [Required(ErrorMessage = "The {0} field is Required")]
+        [MaxLength(50)]
+        [Required]
         public string Name { get; set; }
 
         [DataType(DataType.MultilineText)]
@@ -20,30 +21,25 @@ namespace OnTen.Web.Data.Entities
         [DisplayFormat(DataFormatString = "{0:C2}")]
         public decimal Price { get; set; }
 
-        [Display(Name = "Is Active")]
+        [DisplayName("Is Active")]
         public bool IsActive { get; set; }
 
-        [Display(Name = "Is Starred")]
+        [DisplayName("Is Starred")]
         public bool IsStarred { get; set; }
 
         public int CategoryId { get; set; }
 
-
-        //[JsonIgnore]
         public Category Category { get; set; }
 
         public ICollection<ProductImage> ProductImages { get; set; }
 
-
-        [Display(Name = "Product Images Number")]
+        [DisplayName("Product Images Number")]
         public int ProductImagesNumber => ProductImages == null ? 0 : ProductImages.Count;
 
         //TODO: Pending to put the correct paths
         [Display(Name = "Image")]
         public string ImageFullPath => ProductImages == null || ProductImages.Count == 0
-            //? $"https://localhost:44379/Images/noimage.png"
-            ? $"http://onten.linkonext.com/Images/noimage.png"
+            ? $"https://localhost:44390/images/noimage.png"
             : ProductImages.FirstOrDefault().ImageFullPath;
-
     }
 }
