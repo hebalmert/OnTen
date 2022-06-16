@@ -1,3 +1,4 @@
+using OnTen.Common.Services;
 using OnTen.Prism.ViewModels;
 using OnTen.Prism.Views;
 using Prism;
@@ -19,15 +20,19 @@ namespace OnTen.Prism
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            await NavigationService.NavigateAsync("NavigationPage/ProductsPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
 
+            //Injection IApiService List <T>
+            containerRegistry.Register<IApiService, ApiService>();
+
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<ProductsPage, ProductsPageViewModel>();
         }
     }
 }

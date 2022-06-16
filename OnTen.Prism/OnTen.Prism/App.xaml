@@ -6,6 +6,13 @@
   <Application.Resources>
 
     <!-- Application resource dictionary -->
+        <ResourceDictionary>
 
-  </Application.Resources>
+            <!-- Parameters -->
+            <x:String x:Key="UrlAPI">http://onten.linkonext.com</x:String>
+
+        </ResourceDictionary>
+
+
+    </Application.Resources>
 </prism:PrismApplication>

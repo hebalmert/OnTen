@@ -15,6 +15,10 @@ namespace OnTen.Prism.Droid
             base.OnCreate(savedInstanceState);
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            //Para inicializar el manejo de Imagenes
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
+
             LoadApplication(new App(new AndroidInitializer()));
         }
 
