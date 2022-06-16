@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnTen.Common", "OnTen.Commo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnTen.Web", "OnTen.Web\OnTen.Web.csproj", "{7DC7EBF7-B680-4CDC-B992-B8E4EA1D778C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnTen.Prism", "OnTen.Prism\OnTen.Prism\OnTen.Prism.csproj", "{EA13D33D-984D-4922-AB3D-F1D759576608}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnTen.Prism", "OnTen.Prism\OnTen.Prism\OnTen.Prism.csproj", "{EA13D33D-984D-4922-AB3D-F1D759576608}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnTen.Prism.Android", "OnTen.Prism\OnTen.Prism.Android\OnTen.Prism.Android.csproj", "{20321374-67F2-4ACC-B751-22301E8BE0FB}"
 EndProject
