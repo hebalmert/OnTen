@@ -1,6 +1,7 @@
 ﻿using OnTen.Common.Entities;
 using OnTen.Common.Responses;
 using OnTen.Common.Services;
+using OnTen.Prism.ItemViewModels;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -16,7 +17,13 @@ namespace OnTen.Prism.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
-        private ObservableCollection<Product> _products;
+        private ObservableCollection<ProductItemViewModel> _products;
+        private bool _isRunning;
+        private string _search;
+        private List<Product> _myProducts;
+        private DelegateCommand _searchCommand;
+        public DelegateCommand SearchCommand => _searchCommand ?? (_searchCommand = new DelegateCommand(ShowProducts));
+
 
         public ProductsPageViewModel(INavigationService navigationService, IApiService apiService)
              : base(navigationService)
@@ -27,25 +34,49 @@ namespace OnTen.Prism.ViewModels
 
             LoadProductsAsync();
         }
-        public ObservableCollection<Product> Products
+
+        public bool IsRunning
+        {
+            get => _isRunning;
+            set => SetProperty(ref _isRunning, value);
+        }
+
+
+        public ObservableCollection<ProductItemViewModel> Products
         {
             get => _products;
             set => SetProperty(ref _products, value);
         }
 
+        public string Search
+        {
+            get => _search;
+            set
+            {
+                SetProperty(ref _search, value);
+                ShowProducts();
+            }
+        }
+
         private async void LoadProductsAsync()
         {
+            //Con esto Verificamo si tenemos Internet
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
                 await App.Current.MainPage.DisplayAlert("Error", "falla Conexion Internet", "Aceptar");
                 return;
             }
 
+
+            IsRunning = true;  //Para Marcar que esta ocupado
+            //Cargar la URL Base en el Diccionario de Recursos
             string url = App.Current.Resources["UrlAPI"].ToString();
             Response response = await _apiService.GetListAsync<Product>(
                 url,
                 "/api",
                 "/Products");
+            IsRunning = false;  // Para Indicar que termino la consulta
+
 
             if (!response.IsSuccess)
             {
@@ -53,11 +84,49 @@ namespace OnTen.Prism.ViewModels
                 return;
             }
 
-            List<Product> myProducts = (List<Product>)response.Result;
-            Products = new ObservableCollection<Product>(myProducts);
+            _myProducts = (List<Product>)response.Result;
+            ShowProducts();
+
+            //List<Product> myProducts = (List<Product>)response.Result;
+            //Products = new ObservableCollection<Product>(myProducts);
 
         }
 
+        private void ShowProducts()
+        {
+            if (string.IsNullOrEmpty(Search))
+            {
+                Products = new ObservableCollection<ProductItemViewModel>(_myProducts.Select(p => new ProductItemViewModel(_navigationService)
+                {
+                    Category = p.Category,
+                    Description = p.Description,
+                    ProductId = p.ProductId,
+                    IsActive = p.IsActive,
+                    IsStarred = p.IsStarred,
+                    Name = p.Name,
+                    Price = p.Price,
+                    ProductImages = p.ProductImages
+                })
+                    .ToList());
+            }
+            else
+            {
+                Products = new ObservableCollection<ProductItemViewModel>(_myProducts.Select(p => new ProductItemViewModel(_navigationService)
+                {
+                    Category = p.Category,
+                    Description = p.Description,
+                    ProductId = p.ProductId,
+                    IsActive = p.IsActive,
+                    IsStarred = p.IsStarred,
+                    Name = p.Name,
+                    Price = p.Price,
+                    ProductImages = p.ProductImages
+                })
+                    .Where(p => p.Name.ToLower().Contains(Search.ToLower()))
+                    .ToList());
+            }
+
+        }
 
 
     }

@@ -3,6 +3,8 @@ using Android.Content.PM;
 using Android.OS;
 using Prism;
 using Prism.Ioc;
+using Syncfusion.SfBusyIndicator.XForms.Droid;
+using Syncfusion.SfRotator.XForms.Droid;
 
 namespace OnTen.Prism.Droid
 {
@@ -15,6 +17,10 @@ namespace OnTen.Prism.Droid
             base.OnCreate(savedInstanceState);
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            //Para usar Syncfusion indicador de Ocupado
+            new SfBusyIndicatorRenderer();
+            new SfRotatorRenderer();
 
             //Para inicializar el manejo de Imagenes
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);

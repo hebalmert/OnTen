@@ -1,6 +1,8 @@
 ﻿using Foundation;
 using Prism;
 using Prism.Ioc;
+using Syncfusion.SfBusyIndicator.XForms.iOS;
+using Syncfusion.SfRotator.XForms.iOS;
 using UIKit;
 
 
@@ -12,6 +14,10 @@ namespace OnTen.Prism.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+
+            //Para Usar Syncfusnion indicador de Ocuapado
+            new SfBusyIndicatorRenderer();
+            new SfRotatorRenderer();
 
             //Para inicializar el manejador de Imagenes
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();

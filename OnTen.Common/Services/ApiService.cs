@@ -14,13 +14,18 @@ namespace OnTen.Common.Services
         {
             try
             {
+                //Sistema de Conexion del API de Internet
                 HttpClient client = new HttpClient
                 {
                     BaseAddress = new Uri(urlBase),
                 };
 
+                //Cargamos el Prefijo y el Controlador del API de Internet
                 string url = $"{servicePrefix}{controller}";
+
+                //Tenemos una Respuesta con el Servicio hhtpResponseMessage
                 HttpResponseMessage response = await client.GetAsync(url);
+
                 string result = await response.Content.ReadAsStringAsync();
 
                 if (!response.IsSuccessStatusCode)
