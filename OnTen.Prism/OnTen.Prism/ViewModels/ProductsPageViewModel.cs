@@ -1,6 +1,7 @@
 ﻿using OnTen.Common.Entities;
 using OnTen.Common.Responses;
 using OnTen.Common.Services;
+using OnTen.Prism.Helpers;
 using OnTen.Prism.ItemViewModels;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -28,7 +29,7 @@ namespace OnTen.Prism.ViewModels
         public ProductsPageViewModel(INavigationService navigationService, IApiService apiService)
              : base(navigationService)
         {
-            Title = "Pagina Productos";
+            Title = Languages.Products;
             _navigationService = navigationService;
             _apiService = apiService;
 
@@ -63,7 +64,7 @@ namespace OnTen.Prism.ViewModels
             //Con esto Verificamo si tenemos Internet
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
-                await App.Current.MainPage.DisplayAlert("Error", "falla Conexion Internet", "Aceptar");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
                 return;
             }
 
@@ -80,7 +81,7 @@ namespace OnTen.Prism.ViewModels
 
             if (!response.IsSuccess)
             {
-                await App.Current.MainPage.DisplayAlert( "Error", response.Message, "Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
 

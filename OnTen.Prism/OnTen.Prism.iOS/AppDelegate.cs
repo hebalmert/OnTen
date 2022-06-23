@@ -3,6 +3,7 @@ using Prism;
 using Prism.Ioc;
 using Syncfusion.SfBusyIndicator.XForms.iOS;
 using Syncfusion.SfRotator.XForms.iOS;
+using Syncfusion.XForms.iOS.TextInputLayout;
 using UIKit;
 
 
@@ -18,6 +19,7 @@ namespace OnTen.Prism.iOS
             //Para Usar Syncfusnion indicador de Ocuapado
             new SfBusyIndicatorRenderer();
             new SfRotatorRenderer();
+            SfTextInputLayoutRenderer.Init();
 
             //Para inicializar el manejador de Imagenes
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();

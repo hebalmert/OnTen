@@ -1,4 +1,5 @@
 ﻿using OnTen.Common.Entities;
+using OnTen.Prism.Helpers;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -40,7 +41,7 @@ namespace OnTen.Prism.ViewModels
             if (parameters.ContainsKey("product"))
             {
                 Product = parameters.GetValue<Product>("product");
-                Title = Product.Name;
+                Title = Languages.Product;
                 Images = new ObservableCollection<ProductImage>(Product.ProductImages);
             }
         }
