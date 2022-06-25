@@ -21,7 +21,7 @@ namespace OnTen.Prism.ViewModels
         private ObservableCollection<ProductItemViewModel> _products;
         private bool _isRunning;
         private string _search;
-        private List<Product> _myProducts;
+        private List<ProductResponse> _myProducts;
         private DelegateCommand _searchCommand;
         public DelegateCommand SearchCommand => _searchCommand ?? (_searchCommand = new DelegateCommand(ShowProducts));
 
@@ -72,7 +72,7 @@ namespace OnTen.Prism.ViewModels
             IsRunning = true;  //Para Marcar que esta ocupado
             //Cargar la URL Base en el Diccionario de Recursos
             string url = App.Current.Resources["UrlAPI"].ToString();
-            Response response = await _apiService.GetListAsync<Product>(
+            Response response = await _apiService.GetListAsync<ProductResponse>(
                 url,
                 "/api",
                 "/Products");
@@ -85,7 +85,7 @@ namespace OnTen.Prism.ViewModels
                 return;
             }
 
-            _myProducts = (List<Product>)response.Result;
+            _myProducts = (List<ProductResponse>)response.Result;
             ShowProducts();
 
             //List<Product> myProducts = (List<Product>)response.Result;

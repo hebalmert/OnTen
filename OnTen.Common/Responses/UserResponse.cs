@@ -22,11 +22,9 @@ namespace OnTen.Common.Responses
 
         public string Address { get; set; }
 
-        public String ImageId { get; set; }
+        public string ImageId { get; set; }
 
-        public string ImageFullPath => ImageId == String.Empty
-            //? $"https://onsalezulu.azurewebsites.net/images/noimage.png"
-            //: $"https://onsale.blob.core.windows.net/users/{ImageId}";
+        public string ImageFullPath => ImageId == string.Empty
             ? $"http://onten.linkonext.com/Images/noimage.png"
             : $"http://onten.linkonext.com/Users/{ImageId}";
 

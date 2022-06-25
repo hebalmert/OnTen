@@ -1,7 +1,9 @@
-﻿using OnTen.Common.Entities;
+﻿
+using OnTen.Common.Entities;
 using OnTen.Web.Data.Entities;
 using OnTen.Web.Models;
 using System.Threading.Tasks;
+using Product = OnTen.Web.Data.Entities.Product;
 
 namespace OnTen.Web.Helper
 {

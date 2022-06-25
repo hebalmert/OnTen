@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using OnTen.Common.Entities;
 using OnTen.Web.Data.Entities;
+using Product = OnTen.Web.Data.Entities.Product;
 
 namespace OnTen.Web.Data
 {
@@ -26,6 +27,9 @@ namespace OnTen.Web.Data
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<OrderDetail> OrderDetails { get; set; }
+
+        public DbSet<Qualification> Qualifications { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

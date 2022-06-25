@@ -1,11 +1,10 @@
-﻿using System;
+﻿using OnTen.Common.Entities;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
 
-namespace OnTen.Common.Entities
+namespace OnTen.Web.Data.Entities
 {
     public class Product
     {
@@ -41,5 +40,13 @@ namespace OnTen.Common.Entities
         public string ImageFullPath => ProductImages == null || ProductImages.Count == 0
             ? $"https://localhost:44390/images/noimage.png"
             : ProductImages.FirstOrDefault().ImageFullPath;
+
+        public ICollection<Qualification> Qualifications { get; set; }
+
+        [Display(Name = "Product Qualifications")]
+        public int ProductQualifications => Qualifications == null ? 0 : Qualifications.Count;
+
+        [DisplayFormat(DataFormatString = "{0:N2}")]
+        public float Qualification => Qualifications == null || Qualifications.Count == 0 ? 0 : Qualifications.Average(q => q.Score);
     }
 }

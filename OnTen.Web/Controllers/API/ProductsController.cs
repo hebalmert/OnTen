@@ -28,6 +28,7 @@ namespace OnTen.Web.Controllers.API
             return Ok(_context.Products
                 .Include(p => p.Category)
                 .Include(p => p.ProductImages)
+                .Include(p => p.Qualifications)
                 .Where(p => p.IsActive));
 
         }

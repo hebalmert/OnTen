@@ -1,4 +1,4 @@
-﻿using OnTen.Common.Entities;
+﻿using OnTen.Common.Responses;
 using OnTen.Prism.Views;
 using Prism.Commands;
 using Prism.Navigation;
@@ -8,7 +8,7 @@ using System.Text;
 
 namespace OnTen.Prism.ItemViewModels
 {
-    public class ProductItemViewModel : Product
+    public class ProductItemViewModel : ProductResponse
     {
         private readonly INavigationService _navigationService;
         private DelegateCommand _selectProductCommand;

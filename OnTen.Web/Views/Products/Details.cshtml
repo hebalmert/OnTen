@@ -1,4 +1,4 @@
-﻿@model OnTen.Common.Entities.Product
+﻿@model OnTen.Web.Data.Entities.Product
 
 @{
     ViewData["Title"] = "Details";
@@ -44,21 +44,21 @@
                                 @Html.DisplayFor(model => model.IsStarred)
                                 <p></p>
                             </div>
-@*                            <div class="col-md-12">
+                            <div class="col-md-12">
                                 <strong>@Html.DisplayNameFor(model => model.Qualification):</strong>
                                 @Html.DisplayFor(model => model.Qualification)
                                 <p></p>
-                            </div>*@
+                            </div>
                             <div class="col-md-12">
                                 <strong>@Html.DisplayNameFor(model => model.ProductImagesNumber):</strong>
                                 @Html.DisplayFor(model => model.ProductImagesNumber)
                                 <p></p>
                             </div>
-@*                            <div class="col-md-12">
+                            <div class="col-md-12">
                                 <strong>@Html.DisplayNameFor(model => model.ProductQualifications):</strong>
                                 @Html.DisplayFor(model => model.ProductQualifications)
                                 <p></p>
-                            </div>*@
+                            </div>
                             <p></p>
                             <div>
                                 <a asp-action="Index" class="btn btn-outline-success btn-sm">
@@ -122,7 +122,7 @@
     </div>
 </div>
 
-@*<br />
+<br />
 
 <div class="row">
     <div class="col-md-8">
@@ -174,7 +174,7 @@
             </div>
         </div>
     </div>
-</div>*@
+</div>
 
 <partial name="_DeleteDialog" />
 

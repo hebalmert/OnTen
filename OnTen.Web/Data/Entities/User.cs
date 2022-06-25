@@ -30,7 +30,7 @@ namespace OnTen.Web.Data.Entities
 
         //TODO: Pending to put the correct paths
         [Display(Name = "Image")]
-        public string ImageFullPath => ImageId == string.Empty
+        public string ImageFullPath => ImageId == string.Empty || ImageId == null
             //? $"https://localhost:44379/Images/noimage.png"
             //: $"https://localhost:44379/Users/{ImageId}";
         ? $"http://onten.linkonext.com/Images/noimage.png"

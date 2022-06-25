@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OnTen.Common.Entities.Product>
+﻿@model IEnumerable<OnTen.Web.Data.Entities.Product>
 
 @{
     ViewData["Title"] = "Index";
@@ -37,11 +37,18 @@
                             @Html.DisplayNameFor(model => model.IsStarred)
                         </th>
                         <th>
+                            @Html.DisplayNameFor(model => model.Qualification)
+                        </th>
+                        <th>
                             Category
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.ProductImagesNumber)
                         </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProductQualifications)
+                        </th>
+                        <th width="120px"></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -65,10 +72,17 @@
                                 @Html.DisplayFor(modelItem => item.IsStarred)
                             </td>
                             <td>
+                                @Html.DisplayFor(modelItem => item.Qualification)
+                            </td>
+
+                            <td>
                                 @Html.DisplayFor(modelItem => item.Category.Name)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.ProductImagesNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductQualifications)
                             </td>
 
                             <td>

@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OnTen.Common.Entities;
 using OnTen.Web.Data;
 using OnTen.Web.Data.Entities;
 using OnTen.Web.Helper;
 using OnTen.Web.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace OnTen.Web.Controllers
 {
@@ -39,7 +38,8 @@ namespace OnTen.Web.Controllers
         {
             var dataContext = _context.Products
                 .Include(p => p.Category)
-                .Include(p => p.ProductImages);
+                .Include(p => p.ProductImages)
+                .Include(p => p.Qualifications);
 
             return View(await dataContext.ToListAsync());
         }
@@ -55,6 +55,9 @@ namespace OnTen.Web.Controllers
             var product = await _context.Products
                 .Include(c => c.Category)
                 .Include(c => c.ProductImages)
+                .Include(c => c.Qualifications)
+                .ThenInclude(q => q.User)
+
                 .FirstOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
             {
