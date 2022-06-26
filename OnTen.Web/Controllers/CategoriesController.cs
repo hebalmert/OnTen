@@ -10,6 +10,7 @@ using OnTen.Common.Entities;
 using OnTen.Web.Data;
 using OnTen.Web.Helper;
 using OnTen.Web.Models;
+using Vereyon.Web;
 
 namespace OnTen.Web.Controllers
 {
@@ -20,14 +21,17 @@ namespace OnTen.Web.Controllers
         private readonly DataContext _context;
         private readonly IImageHelper _imageHelper;
         private readonly IConverterHelper _converterHelper;
+        private readonly IFlashMessage _flashMessage;
 
         public CategoriesController(DataContext context,
             IImageHelper imageHelper,
-            IConverterHelper converterHelper)
+            IConverterHelper converterHelper,
+            IFlashMessage flashMessage)
         {
             _context = context;
             _imageHelper = imageHelper;
             _converterHelper = converterHelper;
+            _flashMessage = flashMessage;
         }
 
         // GET: Categories
@@ -91,22 +95,28 @@ namespace OnTen.Web.Controllers
                     _context.Categories.Add(category);
                     await _context.SaveChangesAsync();
 
+                    //Mensaje Toast
+                    _flashMessage.Confirmation("Se ha Creado con Exito la Categoria");
+
                     return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateException dbUpdateException)
                 {
                     if (dbUpdateException.InnerException.Message.Contains("duplicate"))
                     {
-                        ModelState.AddModelError(string.Empty, "There are a record with the same name.");
+                        //ModelState.AddModelError(string.Empty, "There are a record with the same name.");
+                        _flashMessage.Danger("No se ha podido Guardar el Registro");
                     }
                     else
                     {
-                        ModelState.AddModelError(string.Empty, dbUpdateException.InnerException.Message);
+                        //ModelState.AddModelError(string.Empty, dbUpdateException.InnerException.Message);
+                        _flashMessage.Danger(String.Empty, dbUpdateException.InnerException.Message);
                     }
                 }
                 catch (Exception exception)
                 {
-                    ModelState.AddModelError(string.Empty, exception.Message);
+                    //ModelState.AddModelError(string.Empty, exception.Message);
+                    _flashMessage.Danger(String.Empty, exception.Message);
                 }
             }
             return View(model);
@@ -214,6 +224,9 @@ namespace OnTen.Web.Controllers
                         return NotFound();
                     }
                 }
+
+                _flashMessage.Info("Se ha Eliminado con Exito");
+
                 return RedirectToAction(nameof(Index));
 
             }
