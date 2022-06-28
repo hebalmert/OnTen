@@ -11,7 +11,8 @@ namespace OnTen.Common.Enum
         Pending,
         Spreading,
         Sent,
-        Confirmed
+        Confirmed,
+        Cancelled
 
     }
 }

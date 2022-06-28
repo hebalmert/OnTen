@@ -14,6 +14,7 @@ namespace OnTen.Common.Entities
 
         [MaxLength(50)]
         [Required]
+        [Display(Name = "Department")]
         public string Name { get; set; }
 
         public ICollection<City> Cities { get; set; }

@@ -132,6 +132,13 @@
                 <div class="card-body">
 
                     <table class="table table-responsive table-striped" id="MyTable">
+                        <colgroup>
+                            <col span="1" />
+                            <col span="1" />
+                            <col span="1" />
+                            <col span="1" width="400" />
+                        </colgroup>
+
                         <thead>
                             <tr>
                                 <th>
@@ -151,21 +158,39 @@
                         <tbody>
                             @foreach (var item in Model.Qualifications)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DateLocal)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.User.Email)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Score)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Remarks)
-                                </td>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateLocal)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.User.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Score)
+                                    </td>
+                                    <td>
+                                        @{
+                                            string[] noteWords = item.Remarks.Split(' ');
+                                            if (noteWords.Count() > 7)
+                                            {
+                                                <a class="" role="button" data-toggle="collapse" href="#collapseSum@(item.Id)" aria-expanded="false" aria-controls="collapseSum@(item.Id)">
+                                                    @(string.Join(" ", noteWords.Take(7)) + "...")
+                                                </a>
+                                                <div class="collapse" id="collapseSum@(item.Id)">
+                                                    <div class="well">
+                                                        @(string.Join(" ", noteWords.Skip(7)))
+                                                    </div>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                @item.Remarks
+                                            }
+                                        }
 
-                            </tr>
+                                    </td>
+
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -179,12 +204,14 @@
 <partial name="_DeleteDialog" />
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
     <script src="/js/deleteDialog.js"></script>
 
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#MyTable').DataTable({
                 "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
             });

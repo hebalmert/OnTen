@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OnTen.Common.Entities;
+using OnTen.Common.Enum;
 using OnTen.Web.Data;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,20 @@ namespace OnTen.Web.Helper
         {
             _context = context;
         }
+
+        public IEnumerable<SelectListItem> GetOrderStatuses()
+        {
+            return new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "0", Text = OrderStatus.Pending.ToString() },
+                    new SelectListItem { Value = "1", Text = OrderStatus.Spreading.ToString() },
+                    new SelectListItem { Value = "2", Text = OrderStatus.Sent.ToString() },
+                    new SelectListItem { Value = "3", Text = OrderStatus.Confirmed.ToString() },
+                    new SelectListItem { Value = "4", Text = OrderStatus.Cancelled.ToString() }
+                };
+        }
+
+
 
         public IEnumerable<SelectListItem> GetComboCategories()
         {

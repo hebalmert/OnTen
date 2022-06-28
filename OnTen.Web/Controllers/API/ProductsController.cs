@@ -21,15 +21,16 @@ namespace OnTen.Web.Controllers.API
             _context = context;
         }
 
-        // GET: api/Countries
         [HttpGet]
-        public IActionResult GetCountries()
+        public async Task<IActionResult> GetProducts()
         {
-            return Ok(_context.Products
+            List<Product> products = await _context.Products
                 .Include(p => p.Category)
                 .Include(p => p.ProductImages)
                 .Include(p => p.Qualifications)
-                .Where(p => p.IsActive));
+                .Where(p => p.IsActive)
+                .ToListAsync();
+            return Ok(products);
 
         }
     }

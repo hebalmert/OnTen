@@ -12,6 +12,7 @@ namespace OnTen.Common.Entities
 
         [MaxLength(50)]
         [Required]
+        [Display(Name = "City")]
         public string Name { get; set; }
 
         public int DepartmentId { get; set; }
