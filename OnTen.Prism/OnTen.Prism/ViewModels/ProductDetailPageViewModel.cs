@@ -19,7 +19,7 @@ namespace OnTen.Prism.ViewModels
         public ProductDetailPageViewModel( INavigationService navigationService)
             : base(navigationService)
         {
-            Title = "Detalle de Producto";
+            Title = Languages.Details;
         }
 
         public ProductResponse Product

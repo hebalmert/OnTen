@@ -56,6 +56,29 @@ namespace OnTen.Prism.ViewModels
 
         public string Email { get; set; }
 
+        //Propiedad que nos permite establecer el ReturPage
+        private string _pageReturn;
+
+        public async override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+            if (parameters.ContainsKey("pageReturn"))
+            {
+                _pageReturn = parameters.GetValue<string>("pageReturn");
+            }
+
+            if (string.IsNullOrEmpty(_pageReturn))
+            {
+                await _navigationService.NavigateAsync($"/{nameof(OnTenMasterDetailPage)}/NavigationPage/{nameof(ProductsPage)}");
+            }
+            else
+            {
+                await _navigationService.NavigateAsync($"/{nameof(OnTenMasterDetailPage)}/NavigationPage/{_pageReturn}");
+            }
+
+        }
+
+
 
         public DelegateCommand LoginCommand => _loginCommand ?? (_loginCommand = new DelegateCommand(LoginAsync));
 

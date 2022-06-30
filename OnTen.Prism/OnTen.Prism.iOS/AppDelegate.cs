@@ -2,6 +2,7 @@
 using Prism;
 using Prism.Ioc;
 using Syncfusion.SfBusyIndicator.XForms.iOS;
+using Syncfusion.SfRating.XForms.iOS;
 using Syncfusion.SfRotator.XForms.iOS;
 using Syncfusion.XForms.iOS.TextInputLayout;
 using UIKit;
@@ -20,6 +21,7 @@ namespace OnTen.Prism.iOS
             new SfBusyIndicatorRenderer();
             new SfRotatorRenderer();
             SfTextInputLayoutRenderer.Init();
+            SfRatingRenderer.Init();
 
             //Para inicializar el manejador de Imagenes
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
